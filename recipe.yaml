@@ -41,14 +41,7 @@ tasks:
     search: 'overextended'
     replace: '{{dbName}}'
 
-  - action: replace_string
-    mode: all_vars
-    file:
-      - ./resources/[ox]/ox_core/sql/install.sql
 
-  - action: connect_database
-  - action: query_database
-    file: ./resources/[ox]/ox_core/sql/install.sql
 
   ## oxmysql
   - action: download_file
