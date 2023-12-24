@@ -36,13 +36,6 @@ tasks:
     src: ./tmp/ox_core.zip
     dest: ./resources/[ox]
 
-  - action: replace_string
-    file: ./resources/[ox]/ox_core/sql/install.sql
-    search: 'overextended'
-    replace: '{{dbName}}'
-
-
-
   ## oxmysql
   - action: download_file
     url: https://github.com/overextended/oxmysql/releases/latest/download/oxmysql.zip
