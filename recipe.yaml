@@ -1,0 +1,236 @@
+$engine: 3
+name: SLDCRPMOD
+version: 2.2.1
+author: DARKDRAGON
+description: A full featured (13 jobs) and highly configurable yet lightweight ESX v1-final base that can be easily extended. 
+
+tasks:
+  # Download default CFX resources
+  - action: download_github
+    src: https://github.com/citizenfx/cfx-server-data
+    subpath: resources
+    dest: ./resources
+  
+  # Download and prepare server.cfg / loadingscreen / database
+  - action: download_github
+    src: https://github.com/tabarra/PlumeESX-recipe
+    ref: main
+    dest: ./tmp/plume_esx
+
+  - action: move_path
+    src: ./tmp/plume_esx/server.cfg
+    dest: ./server.cfg
+  
+  - action: move_path
+    src: ./tmp/plume_esx/default_spawnpoint
+    dest: ./resources/default_spawnpoint
+
+  - action: move_path
+    src: ./tmp/plume_esx/loadingscreen
+    dest: ./resources/loadingscreen
+
+  - action: connect_database
+  - action: query_database
+    file: ./tmp/plume_esx/plume.sql
+  - action: query_database
+    file: ./tmp/plume_esx/gcphone.sql
+
+  # Download basic resources and ESX dependencies
+  - action: download_github
+    src: https://github.com/Blumlaut/EasyAdmin
+    dest: ./resources/EasyAdmin
+
+  - action: download_github
+    src: https://github.com/esx-framework/async
+    dest: ./resources/async
+
+  - action: download_github
+    src: https://github.com/brouznouf/fivem-mysql-async
+    dest: ./resources/mysql-async
+
+  - action: download_github
+    src: https://github.com/esx-framework/cron
+    dest: ./resources/cron
+
+  - action: download_github
+    src: https://github.com/HypeLevels/simpledrift
+    dest: ./resources/simpledrift
+
+  - action: download_github
+    src: https://github.com/Bob74/bob74_ipl
+    dest: ./resources/bob74_ipl
+
+  - action: download_github
+    src: https://github.com/ali-exacute/esx_adminplus
+    dest: ./resources/esx_adminplus
+
+  # Download and prepare ESX
+
+  - action: download_file
+    url: https://github.com/esx-framework/esx-legacy/archive/refs/heads/main.zip
+    path: ./tmp/main.zip
+  - action: unzip
+    src: ./tmp/main.zip
+    dest: ./tmp
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/instance
+    dest: ./resources/instance
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx]/skinchanger
+    dest: ./resources/skinchanger
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx]/es_extended
+    dest: ./resources/[esx]/es_extended
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx]/esx_menu_default
+    dest: ./resources/[esx]/esx_menu_default
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx]/esx_menu_dialog
+    dest: ./resources/[esx]/esx_menu_dialog
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx]/esx_menu_list
+    dest: ./resources/[esx]/esx_menu_list
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/esx_datastore
+    dest: ./resources/[esx]/esx_datastore
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx]/esx_identity
+    dest: ./resources/[esx]/esx_identity
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx]/esx_skin
+    dest: ./resources/[esx]/esx_skin
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/esx_status
+    dest: ./resources/[esx]/esx_status
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/esx_basicneeds
+    dest: ./resources/[esx]/esx_basicneeds
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/esx_billing
+    dest: ./resources/[esx]/esx_billing
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/esx_addoninventory
+    dest: ./resources/[esx]/esx_addoninventory
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/esx_addonaccount
+    dest: ./resources/[esx]/./resources/[esx]/esx_addonaccount
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/esx_society
+    dest: ./resources/[esx]/esx_society
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/esx_license
+    dest: ./resources/[esx]/esx_license
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/esx_service
+    dest: ./resources/[esx]/esx_service
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/esx_garage
+    dest: ./resources/[esx]/esx_garage
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/esx_vehicleshop
+    dest: ./resources/[esx]/esx_vehicleshop
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/esx_jobs
+    dest: ./resources/[esx]/esx_jobs
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/esx_joblisting
+    dest: ./resources/[esx]/esx_joblisting
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/esx_policejob
+    dest: ./resources/[esx]/esx_policejob
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/esx_ambulancejob
+    dest: ./resources/[esx]/esx_ambulancejob
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/esx_mechanicjob
+    dest: ./resources/[esx]/esx_mechanicjob
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/esx_taxijob
+    dest: ./resources/[esx]/esx_taxijob
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/esx_lscustom
+    dest: ./resources/[esx]/esx_lscustom
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/esx_atm
+    dest: ./resources/[esx]/esx_atm 
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/esx_shops
+    dest: ./resources/[esx]/esx_shops
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/esx_weaponshop
+    dest: ./resources/[esx]/esx_weaponshop
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/esx_clotheshop
+    dest: ./resources/[esx]/esx_clotheshop
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/esx_barbershop
+    dest: ./resources/[esx]/esx_barbershop
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/esx_drugs
+    dest: ./resources/[esx]/esx_drugs
+
+  - action: move_path
+    src: ./tmp/esx-legacy-main/[esx_addons]/esx_holdup
+    dest: ./resources/[esx]/esx_holdup
+
+  ## GCPhone stuff
+  - action: download_file
+    url: https://github.com/Re-Ignited-Development/Re-Ignited-Phone/releases/download/V1.5/resources-1.2.zip
+    path: ./tmp/gcphone.zip
+  - action: unzip
+    src: ./tmp/gcphone.zip
+    dest: ./tmp
+  - action: move_path
+    src: ./tmp/resources-1.2/gcphone
+    dest: ./resources/gcphone
+  
+
+  ## KL HUD v2
+  - action: download_github
+    src: https://github.com/Kilichi/Kl_HudV2
+    dest: ./resources/Kl_HudV2
+
+  - action: replace_string
+    file: ./resources/[esx]/esx_status/client/main.lua
+    search: 'esx_status:onTick'
+    replace: 'Kl_Hud:onTick'
+
+
+  ## Final touches
+  - action: replace_string
+    mode: all_vars
+    file: ./resources/loadingscreen/config.js
+    
+  - action: remove_path
+    path: ./tmp
